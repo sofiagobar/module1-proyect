@@ -31,6 +31,10 @@ class Game {
 
     }
     
+    onKeyEvent(){
+        this.littleRedRidingHood.onKeyEvent(event)
+    }
+
     move() {
         this.background.move()
         this.littleRedRidingHood.move()
@@ -45,5 +49,5 @@ class Game {
 
     }
 
-    addWolf(){}
+   
 }
