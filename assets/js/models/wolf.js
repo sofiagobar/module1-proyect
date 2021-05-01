@@ -2,30 +2,60 @@ class Wolf {
     constructor(ctx){
         this.ctx = ctx
 
-        this.x = 0
-        this.y = 0
+        
+        this.y = 440
 
-        this.vx = 0
+        this.vx = 5
         this.vy = 0
 
-        this.w = 0
-        this.h = 0
-
+        this.w = 70
+        this.h = 125
+        this.x = this.ctx.canvas.width + this.w
         this.g = 0
 
         this.img = new Image()
-        this.img.drawCount = 0
-        this.img.frames = 0
+        this.img.tick = 0
+        this.img.frames = 4
         this.img.frameIndex = 0
-        this.img.src = ''
+        this.img.src = './assets/img/wolf.png'
 
-        this.lightballs = []
     }
     
-    draw(){}
+    draw(){
+        this.img.tick++
 
-    move(){}
+        if (this.img.tick >= 10) {
+            this.img.tick = 0
+            this.animate()
+        }
 
-    animate(){}
+        // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+        this.ctx.drawImage(
+            this.img,
+            0,
+            this.img.frameIndex * this.img.height / this.img.frames,
+            this.img.width,
+            this.img.height / 4,
+            this.x,
+            this.y,
+            this.w,
+            this.h  
+        )
+        
+    }
+
+    move(){
+        this.x -= this.vx
+  
+    }
+
+    animate(){
+        this.img.frameIndex++
+
+        if (this.img.frameIndex >= this.img.frames) {
+           this.img.frameIndex = 0
+        }
+        
+    }
 
 }

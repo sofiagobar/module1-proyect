@@ -8,11 +8,12 @@ class Game {
 
         this.background = new Background(this.ctx)
         this.littleRedRidingHood = new LittleRedRidingHood(this.ctx)
+        this.wolf = new Wolf(this.ctx)
 
         //this.audio = new Audio('')
     }
 
-    start(){
+    start() {
         this.intervalId = setInterval(() => {
             this.clear()
             this.move()
@@ -21,23 +22,24 @@ class Game {
      
     }
 
-    clear(){
+    clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     }
 
     draw() {
         this.background.draw()
         this.littleRedRidingHood.draw()
-
+        this.wolf.draw()
     }
     
-    onKeyEvent(){
+    onKeyEvent() {
         this.littleRedRidingHood.onKeyEvent(event)
     }
 
     move() {
         this.background.move()
         this.littleRedRidingHood.move()
+        this.wolf.move()
     }
     
     addWolf(){}

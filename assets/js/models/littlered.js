@@ -1,9 +1,10 @@
 class LittleRedRidingHood {
-    constructor(ctx){
+    constructor(ctx) {
         this.ctx = ctx
 
-        this.x = 10
+        this.x = 20
         this.y = 450
+        this.floor = this.y
 
         this.vx = 0
         this.vy = 0
@@ -11,19 +12,23 @@ class LittleRedRidingHood {
         this.w = 50
         this.h = 80
 
-        this.g = 0
+        this.g = 0.5
+        
+        this.jumping = false
 
         this.img = new Image()
         this.img.tick = 0
         this.img.frames = 12
         this.img.frameIndex = 12
         this.img.src = './assets/img/red-hood8.png'
+
+        this.apples = []
     }
 
-    draw(){
+    draw() {
         this.img.tick++
 
-        if (this.img.tick >= 5) {
+        if (this.img.tick >= 10) {
             this.img.tick = 0
             this.animate()
         }
@@ -39,16 +44,40 @@ class LittleRedRidingHood {
             this.w,
             this.h  
         )
+
+        this.apples.forEach(a => a.draw())
     }
 
-    move(){
-        
+    move() {
 
+        if (this.isJumping()) {
+            this.vy += this.g
+        }
+        
+        this.x += this.vx
+        this.y += this.vy
+
+        if (!this.isJumping()){
+            this.vy = 0
+            this.y = this.floor
+        }
+        
+        this.apples.forEach(a => a.move())
+
+        if (this.x + this.w / 2 >= this.ctx.canvas.width) {
+            this.vx *= -1
+        }
+        if (this.x <= 0) {
+            this.vx = 0
+            this.x = 0
+        }
     }
         
+    isJumping() {
+        return this.y < this.floor
+    }
 
-
-    animate(){
+    animate() {
         this.img.frameIndex--
 
         if (this.img.frameIndex === 0) {
@@ -56,34 +85,40 @@ class LittleRedRidingHood {
         }
     };
 
-    fire(){};
+    fire() {
+        const apple = new Apple(this.ctx, this.x + this.w, this.y + this.h / 2)
+
+        this.apples.push(apple)
+    };
 
     onKeyEvent(event) {
         if (event.type === 'keydown') {
-            switch(event.keyCode) {}
-        } else
-    };
 
-    receiveDamage(){};
+            switch(event.keyCode){
+                case KEY_RIGHT:
+                    this.vx = 10
+                    break;
+                case KEY_LEFT:
+                    this.vx = -10
+                    break;
+                case KEY_UP:
+                    if (!this.isJumping()) {
+                        this.vy = -10
+                    }
+                    break;
+                case KEY_FIRE:
+                    this.fire()
+                    break;
+            }
+        } else {
+            switch(event.keyCode){
+                case KEY_RIGHT:
+                    this.vx = 0
+                    break;
+                case KEY_LEFT:
+                    this.vx = 0
+                    break;
+            }
+        }
+    }
 }
-
-
-/* this.img.tick++
-
-        if (this.img.tick >= 13) {
-            this.img.tick === 0
-            this.animate()
-        }
-        this.img.frameIndex--
-        
-        if (this.img.frameIndex === 0) {
-            this.img.frame = 12
-        } 
-        
-if (this.img.tick >= 12) {
-            this.img.tick = 0
-
-            
-        }
-        */
-        
