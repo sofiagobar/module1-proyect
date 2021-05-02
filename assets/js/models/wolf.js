@@ -11,7 +11,7 @@ class Wolf {
         this.w = 70
         this.h = 125
         this.x = this.ctx.canvas.width + this.w
-        this.g = 0
+        this.dist = Math.random() * 100 + 300
 
         this.img = new Image()
         this.img.tick = 0
@@ -46,7 +46,6 @@ class Wolf {
 
     move(){
         this.x -= this.vx
-  
     }
 
     animate(){

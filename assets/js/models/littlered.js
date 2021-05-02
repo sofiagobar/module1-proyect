@@ -44,7 +44,8 @@ class LittleRedRidingHood {
             this.w,
             this.h  
         )
-
+        
+        this.clearApples()
         this.apples.forEach(a => a.draw())
     }
 
@@ -65,7 +66,7 @@ class LittleRedRidingHood {
         this.apples.forEach(a => a.move())
 
         if (this.x + this.w / 2 >= this.ctx.canvas.width) {
-            this.vx *= -1
+            this.vx = 0
         }
         if (this.x <= 0) {
             this.vx = 0
@@ -86,15 +87,23 @@ class LittleRedRidingHood {
     };
 
     fire() {
-        const apple = new Apple(this.ctx, this.x + this.w, this.y + this.h / 2)
+        const apple = new Apple(
+            this.ctx, 
+            this.x + this.w, 
+            this.y + this.h / 2
+            )
 
         this.apples.push(apple)
+    };
+
+    clearApples() {
+       this.apples = this.apples.filter(a => a.isVisible())
     };
 
     onKeyEvent(event) {
         if (event.type === 'keydown') {
 
-            switch(event.keyCode){
+            switch(event.keyCode) {
                 case KEY_RIGHT:
                     this.vx = 10
                     break;

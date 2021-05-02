@@ -9,6 +9,9 @@ class Game {
         this.background = new Background(this.ctx)
         this.littleRedRidingHood = new LittleRedRidingHood(this.ctx)
         this.wolf = new Wolf(this.ctx)
+        this.tick = 0
+
+        this.wolves = []
 
         //this.audio = new Audio('')
     }
@@ -19,7 +22,12 @@ class Game {
             this.move()
             this.draw()
         }, 1000 / 60)
-     
+        
+        this.addWolf()
+        if (this.tick++ > 10000) {
+            this.tick = 0;
+          }
+
     }
 
     clear() {
@@ -42,7 +50,10 @@ class Game {
         this.wolf.move()
     }
     
-    addWolf(){}
+    addWolf(){
+        this.wolves.push(this.wolf)
+
+    }
 
     clear() {
         //clear fireballs
