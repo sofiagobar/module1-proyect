@@ -31,14 +31,13 @@ class Background {
             this.h
         )
     }
+    
     move() {
         this.x += this.vx
 
         if (this.x <= -this.w) {
             this.x = 0
         }
-        // TODO: move background
-        // TODO: restart position if out of canvas
-      }
+    }
 
 }

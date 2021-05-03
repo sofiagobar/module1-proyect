@@ -11,7 +11,10 @@ class Wolf {
         this.w = 70
         this.h = 125
         this.x = this.ctx.canvas.width + this.w
-        this.dist = Math.random() * 100 + 300
+
+        /*this.minDist = 50;
+        this.maxDist = 200;
+        this.dist = Math.floor(Math.random() * (this.maxDist - this.minDist + 1) + this.minDist);*/
 
         this.img = new Image()
         this.img.tick = 0
@@ -56,5 +59,8 @@ class Wolf {
         }
         
     }
-
+    isVisible(){
+        return this.x < this.ctx.canvas.width * 2 &&
+        this.x > 0 - this.ctx.canvas.width
+    }
 }

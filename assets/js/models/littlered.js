@@ -65,7 +65,7 @@ class LittleRedRidingHood {
         
         this.apples.forEach(a => a.move())
 
-        if (this.x + this.w / 2 >= this.ctx.canvas.width) {
+        if (this.x + this.w > this.ctx.canvas.width) {
             this.vx = 0
         }
         if (this.x <= 0) {

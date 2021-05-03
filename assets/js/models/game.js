@@ -8,10 +8,12 @@ class Game {
 
         this.background = new Background(this.ctx)
         this.littleRedRidingHood = new LittleRedRidingHood(this.ctx)
-        this.wolf = new Wolf(this.ctx)
+        // this.wolf = new Wolf(this.ctx)
+        
         this.tick = 0
-
-        this.wolves = []
+        this.wolves = [
+            new Wolf(this.ctx)
+        ]
 
         //this.audio = new Audio('')
     }
@@ -21,23 +23,24 @@ class Game {
             this.clear()
             this.move()
             this.draw()
-        }, 1000 / 60)
-        
-        this.addWolf()
-        if (this.tick++ > 10000) {
-            this.tick = 0;
-          }
 
+            if (this.tick++ > 100) {
+                this.tick = 0;
+                this.addWolf()
+            }
+        }, 1000 / 60)
     }
 
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+        this.clearWolf()
     }
 
     draw() {
         this.background.draw()
         this.littleRedRidingHood.draw()
-        this.wolf.draw()
+        this.wolves.forEach(wolf => wolf.draw())
+        
     }
     
     onKeyEvent() {
@@ -47,16 +50,22 @@ class Game {
     move() {
         this.background.move()
         this.littleRedRidingHood.move()
-        this.wolf.move()
+        this.wolves.forEach(wolf => wolf.move())
     }
     
     addWolf(){
-        this.wolves.push(this.wolf)
+        const newWolf = new Wolf(this.ctx)
 
+        this.wolves.push(newWolf)
+
+        
+        
     }
 
-    clear() {
-        //clear fireballs
+    clearWolf() {
+        this.wolves = this.wolves.filter(wolf => wolf.isVisible())
+
+        
     }
     gameOver(){
 
