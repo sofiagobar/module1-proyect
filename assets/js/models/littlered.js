@@ -3,7 +3,7 @@ class LittleRedRidingHood {
         this.ctx = ctx
 
         this.x = 20
-        this.y = 450
+        this.y = 460
         this.floor = this.y
 
         this.vx = 0
@@ -12,7 +12,7 @@ class LittleRedRidingHood {
         this.w = 50
         this.h = 80
 
-        this.g = 0.5
+        this.g = 0.35
         
         this.jumping = false
 

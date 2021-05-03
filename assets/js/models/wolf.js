@@ -3,24 +3,23 @@ class Wolf {
         this.ctx = ctx
 
         
-        this.y = 440
+        this.y = 430
 
         this.vx = 5
         this.vy = 0
 
-        this.w = 70
+        this.w = 80
         this.h = 125
         this.x = this.ctx.canvas.width + this.w
 
-        /*this.minDist = 50;
-        this.maxDist = 200;
-        this.dist = Math.floor(Math.random() * (this.maxDist - this.minDist + 1) + this.minDist);*/
+        /* this.dist = Math.random() * 100 + 300
+        this.x = Math.random() > 0.5 ? 0 - this.dist : this.dist*/
 
         this.img = new Image()
         this.img.tick = 0
         this.img.frames = 4
         this.img.frameIndex = 0
-        this.img.src = './assets/img/wolf.png'
+        this.img.src = './assets/img/wolf2.png'
 
     }
     
@@ -44,7 +43,6 @@ class Wolf {
             this.w,
             this.h  
         )
-        
     }
 
     move(){

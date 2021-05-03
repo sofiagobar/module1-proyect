@@ -32,7 +32,7 @@ class Apple {
     }
 
     move() {
-        this.vy += this.g
+        //this.vy += this.g
         this.x += this.vx
         this.y += this.vy
     }

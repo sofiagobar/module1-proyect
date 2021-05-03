@@ -15,7 +15,9 @@ class Game {
             new Wolf(this.ctx)
         ]
 
-        //this.audio = new Audio('')
+        this.points = 0
+
+        //this.audio = new Audio('./assets/sound/80s-synth-music.mp3')
     }
 
     start() {
@@ -24,6 +26,9 @@ class Game {
             this.move()
             this.draw()
             this.checkCollisions()
+            //this.audio.play()
+            //this.checkAppleColision()
+            //this.score()
 
             if (this.tick++ > 100) {
                 this.tick = 0;
@@ -56,7 +61,7 @@ class Game {
     
     addWolf(){
         const newWolf = new Wolf(this.ctx)
-
+        
         this.wolves.push(newWolf)
 
         /*if (this.tick * Math.random() < 100) {
@@ -66,7 +71,8 @@ class Game {
     }
 
     clearWolf() {
-        this.wolves = this.wolves.filter(wolf => wolf.isVisible())   
+        this.wolves = this.wolves.filter(wolf => wolf.isVisible())
+
     }
 
     checkCollisions() {
@@ -79,15 +85,52 @@ class Game {
             const colY = this.littleRedRidingHood.y + this.littleRedRidingHood.h >= wolf.y
 
             return colX && colY
-            
         })
+
         if (collision) {
-            this.stop()
-            
-          }
+            this.gameOver()
+        }
     }
 
-    stop() {
+    /*checkAppleColision() {
+        const appleCollision = this.littleRedRidingHood.apples.some(apple =>{
+            const appleColX = this.wolf.x + this.wolf.w >= this.apples.x &&
+            this.wolf.x <= this.apples.x + this.apples.w
+
+            const appleColY = this.apple.y + this.apple.h >= game.wolf.y
+
+            return appleColX && appleColY
+
+        })
+        if (appleCollision){
+            !apple.isVisible()
+            //lobo no visible
+            this.points++
+        }
+    }
+
+    score(){
+        
+        this.ctx.font = "40px Serif";
+        this.ctx.fillStyle = 'white';
+        this.ctx.textAlign = "center"
+        this.context.fillText(
+            `Score: ${points}`, 
+            350, 
+            50
+        );
+    }*/
+
+    gameOver() {
         clearInterval(this.intervalId)
+
+        this.ctx.font = "40px Serif";
+        this.ctx.fillStyle = 'white';
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(
+            "GAME OVER",
+            this.ctx.canvas.width / 2,
+            this.ctx.canvas.height / 2
+        );
     }
 }
