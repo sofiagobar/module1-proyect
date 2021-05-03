@@ -23,6 +23,7 @@ class Game {
             this.clear()
             this.move()
             this.draw()
+            this.checkCollisions()
 
             if (this.tick++ > 100) {
                 this.tick = 0;
@@ -58,18 +59,35 @@ class Game {
 
         this.wolves.push(newWolf)
 
-        
+        /*if (this.tick * Math.random() < 100) {
+            this.wolves.push(newWolf)
+        }*/
         
     }
 
     clearWolf() {
-        this.wolves = this.wolves.filter(wolf => wolf.isVisible())
-
-        
-    }
-    gameOver(){
-
+        this.wolves = this.wolves.filter(wolf => wolf.isVisible())   
     }
 
-   
+    checkCollisions() {
+        const collision = this.wolves.some(wolf => {
+            const colX = (
+                this.littleRedRidingHood.x + this.littleRedRidingHood.w >= wolf.x &&
+                this.littleRedRidingHood.x <= wolf.x +wolf.w
+            )
+
+            const colY = this.littleRedRidingHood.y + this.littleRedRidingHood.h >= wolf.y
+
+            return colX && colY
+            
+        })
+        if (collision) {
+            this.stop()
+            
+          }
+    }
+
+    stop() {
+        clearInterval(this.intervalId)
+    }
 }

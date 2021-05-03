@@ -63,4 +63,5 @@ class Wolf {
         return this.x < this.ctx.canvas.width * 2 &&
         this.x > 0 - this.ctx.canvas.width
     }
+
 }
