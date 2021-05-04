@@ -8,8 +8,7 @@ class Game {
 
         this.background = new Background(this.ctx)
         this.littleRedRidingHood = new LittleRedRidingHood(this.ctx)
-        // this.wolf = new Wolf(this.ctx)
-        
+                
         this.tick = 0
         this.wolves = [
             new Wolf(this.ctx)
@@ -72,42 +71,31 @@ class Game {
 
     clearWolf() {
         this.wolves = this.wolves.filter(wolf => wolf.isVisible())
-
     }
 
     checkCollisions() {
-        const collision = this.wolves.some(wolf => {
-            const colX = (
-                this.littleRedRidingHood.x + this.littleRedRidingHood.w >= wolf.x &&
-                this.littleRedRidingHood.x <= wolf.x +wolf.w
-            )
+       
+        const collisionWithLittleRed = this.wolves.some(wolf => wolf.collidesWith(this.littleRedRidingHood))
+        for (let i = 0; i < this.wolves.length; i++) {
+            const wolf = this.wolves[i];
+            for (let j = 0; j < this.littleRedRidingHood.apples.length; j++) {
+                const apple = this.littleRedRidingHood.apples[j]
+                if (wolf.collidesWith(apple)) {
+                    this.wolves.splice(i, 1)
+                    this.littleRedRidingHood.apples.splice(j, 1)
+                    break;
+                }
+            }
+        }
 
-            const colY = this.littleRedRidingHood.y + this.littleRedRidingHood.h >= wolf.y
 
-            return colX && colY
-        })
-
-        if (collision) {
+    
+        if (collisionWithLittleRed) {
             this.gameOver()
         }
     }
 
-    /*checkAppleColision() {
-        const appleCollision = this.littleRedRidingHood.apples.some(apple =>{
-            const appleColX = this.wolf.x + this.wolf.w >= this.apples.x &&
-            this.wolf.x <= this.apples.x + this.apples.w
-
-            const appleColY = this.apple.y + this.apple.h >= game.wolf.y
-
-            return appleColX && appleColY
-
-        })
-        if (appleCollision){
-            !apple.isVisible()
-            //lobo no visible
-            this.points++
-        }
-    }
+    /*
 
     score(){
         

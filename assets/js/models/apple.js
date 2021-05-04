@@ -28,7 +28,6 @@ class Apple {
             this.w,
             this.h,
         )
-        
     }
 
     move() {
@@ -40,6 +39,14 @@ class Apple {
     isVisible() {
         return this.y < this.ctx.canvas.height
     };
+
+    applesColidesWith(element) {
+
+        return this.x < element.x + element.w &&
+        this.x + this.w > element.x &&
+        this.y < element.y + element.h &&
+        this.y + this.h > element.y;
+    }
 
     animate(){}
 }

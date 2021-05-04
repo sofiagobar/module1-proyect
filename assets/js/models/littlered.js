@@ -100,6 +100,8 @@ class LittleRedRidingHood {
        this.apples = this.apples.filter(a => a.isVisible())
     };
 
+   
+    
     onKeyEvent(event) {
         if (event.type === 'keydown') {
 
