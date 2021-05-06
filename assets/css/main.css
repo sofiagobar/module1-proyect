@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     padding: 0;
     margin: 0;
-  }
+}
   
   body * {
     box-sizing: border-box;
@@ -12,5 +12,20 @@ html, body {
   canvas {
     overflow: hidden;
     border: 1px dotted;
+    position: absolute;
   }
-  
+
+#start-button {
+    font-size: 30px;
+    background-color:#cc0913f6;
+    color: #fff;
+    padding: 10px 30px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+.game-intro {
+    position: absolute;
+  }

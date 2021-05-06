@@ -3,16 +3,15 @@ class Wolf {
     this.ctx = ctx;
 
     this.y = 430;
+    this.floor = this.y
 
     this.vx = 5;
-    this.vy = 0;
+    this.vy = 1;
+    this.g = 0
 
     this.w = 80;
     this.h = 125;
     this.x = this.ctx.canvas.width + this.w;
-
-    /* this.dist = Math.random() * 100 + 300
-        this.x = Math.random() > 0.5 ? 0 - this.dist : this.dist*/
 
     this.img = new Image();
     this.img.tick = 0;
@@ -27,6 +26,8 @@ class Wolf {
     if (this.img.tick >= 10) {
       this.img.tick = 0;
       this.animate();
+      this.isJumping()
+      !this.isJumping()
     }
 
     // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
@@ -45,6 +46,22 @@ class Wolf {
 
   move() {
     this.x -= this.vx;
+    this.y += this.vy;
+    
+    if (this.isJumping()) {
+      this.vy += this.g
+    }
+    
+    if (this.y > this.floor) {
+      this.vy = -10
+      this.vy += this.g
+      this.vy = 0
+    }
+    
+  }
+
+  isJumping() {
+    return this.y < this.floor
   }
 
   animate() {
@@ -54,9 +71,11 @@ class Wolf {
       this.img.frameIndex = 0;
     }
   }
+  
   isVisible() {
     return (
-      this.x < this.ctx.canvas.width * 2 && this.x > 0 - this.ctx.canvas.width
+      this.x < this.ctx.canvas.width * 2 && 
+      this.x > 0 - this.ctx.canvas.width 
     );
   }
 

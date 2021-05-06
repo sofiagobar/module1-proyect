@@ -15,6 +15,7 @@ class Game {
         ]
 
         this.points = 0
+        this.randomTickMax = 100
 
         //this.audio = new Audio('./assets/sound/80s-synth-music.mp3')
     }
@@ -25,11 +26,12 @@ class Game {
             this.move()
             this.draw()
             this.checkCollisions()
+            this.score()
             //this.audio.play()
-            //this.checkAppleColision()
-            //this.score()
-
-            if (this.tick++ > 100) {
+ 
+            if (this.tick++ > this.randomTickMax) {
+                this.randomTickMax = (Math.random() * 100) + 40
+                //console.log('tick', this.tick)
                 this.tick = 0;
                 this.addWolf()
             }
@@ -60,13 +62,7 @@ class Game {
     
     addWolf(){
         const newWolf = new Wolf(this.ctx)
-        
         this.wolves.push(newWolf)
-
-        /*if (this.tick * Math.random() < 100) {
-            this.wolves.push(newWolf)
-        }*/
-        
     }
 
     clearWolf() {
@@ -81,33 +77,30 @@ class Game {
             for (let j = 0; j < this.littleRedRidingHood.apples.length; j++) {
                 const apple = this.littleRedRidingHood.apples[j]
                 if (wolf.collidesWith(apple)) {
+                    this.points++
                     this.wolves.splice(i, 1)
                     this.littleRedRidingHood.apples.splice(j, 1)
                     break;
                 }
             }
         }
-
-
     
         if (collisionWithLittleRed) {
             this.gameOver()
         }
     }
 
-    /*
+    score() {
 
-    score(){
-        
-        this.ctx.font = "40px Serif";
+        this.ctx.font = "30px Serif";
         this.ctx.fillStyle = 'white';
-        this.ctx.textAlign = "center"
-        this.context.fillText(
-            `Score: ${points}`, 
-            350, 
+        this.ctx.fillText(
+            `Score: ${this.points}`, 
+            60, 
             50
         );
-    }*/
+            
+    }
 
     gameOver() {
         clearInterval(this.intervalId)
