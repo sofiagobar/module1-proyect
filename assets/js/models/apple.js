@@ -48,5 +48,4 @@ class Apple {
         this.y + this.h > element.y;
     }
 
-    animate(){}
 }

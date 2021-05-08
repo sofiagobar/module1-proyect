@@ -13,27 +13,34 @@ class Game {
         this.wolves = [
             new Wolf(this.ctx)
         ]
+        this.shooterWolves = [
+           
+        ]
 
         this.points = 0
-        this.randomTickMax = 100
+        this.randomTickMax =100
 
+        this.wolfAudio = new Audio('./assets/sound/wolfHowling.mp3')
         //this.audio = new Audio('./assets/sound/80s-synth-music.mp3')
     }
 
     start() {
+        //this.audio.play()
         this.intervalId = setInterval(() => {
             this.clear()
             this.move()
             this.draw()
             this.checkCollisions()
             this.score()
-            //this.audio.play()
- 
+            
             if (this.tick++ > this.randomTickMax) {
                 this.randomTickMax = (Math.random() * 100) + 40
-                //console.log('tick', this.tick)
                 this.tick = 0;
                 this.addWolf()
+            }
+
+            if (this.tick === 50) {
+                this.addShooterWolf()
             }
         }, 1000 / 60)
     }
@@ -47,6 +54,7 @@ class Game {
         this.background.draw()
         this.littleRedRidingHood.draw()
         this.wolves.forEach(wolf => wolf.draw())
+        this.shooterWolves.forEach(shooterWolf => shooterWolf.draw())
         
     }
     
@@ -58,11 +66,18 @@ class Game {
         this.background.move()
         this.littleRedRidingHood.move()
         this.wolves.forEach(wolf => wolf.move())
+        this.shooterWolves.forEach(shooterWolf => shooterWolf.move())
     }
     
     addWolf(){
         const newWolf = new Wolf(this.ctx)
         this.wolves.push(newWolf)
+    }
+
+    addShooterWolf () {
+        console.log('entro')
+        const newShooterWolf = new Shooterwolf(this.ctx)
+        this.shooterWolves.push(newShooterWolf)
     }
 
     clearWolf() {
@@ -84,6 +99,14 @@ class Game {
                 }
             }
         }
+
+        /* 
+        for (let i = 0; i < this.shooterWolves.rottenApples.length; i++) {
+            const rottenApple = this.shooterWolves.rottenApples[i]
+
+        }
+        
+        */
     
         if (collisionWithLittleRed) {
             this.gameOver()
@@ -95,23 +118,23 @@ class Game {
         this.ctx.font = "30px Serif";
         this.ctx.fillStyle = 'white';
         this.ctx.fillText(
-            `Score: ${this.points}`, 
+            `You slayed ${this.points} wolves`, 
             60, 
             50
         );
-            
     }
 
     gameOver() {
         clearInterval(this.intervalId)
-
+        
         this.ctx.font = "40px Serif";
         this.ctx.fillStyle = 'white';
         this.ctx.textAlign = "center";
         this.ctx.fillText(
-            "GAME OVER",
+            "YOU LOSE",
             this.ctx.canvas.width / 2,
             this.ctx.canvas.height / 2
         );
+        this.wolfAudio.play()
     }
 }

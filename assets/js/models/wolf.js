@@ -18,6 +18,8 @@ class Wolf {
     this.img.frames = 4;
     this.img.frameIndex = 0;
     this.img.src = "./assets/img/wolf2.png";
+
+    
   }
 
   draw() {
@@ -57,7 +59,6 @@ class Wolf {
       this.vy += this.g
       this.vy = 0
     }
-    
   }
 
   isJumping() {
@@ -71,7 +72,7 @@ class Wolf {
       this.img.frameIndex = 0;
     }
   }
-  
+
   isVisible() {
     return (
       this.x < this.ctx.canvas.width * 2 && 
