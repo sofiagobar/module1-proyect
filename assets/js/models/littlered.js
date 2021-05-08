@@ -129,5 +129,18 @@ class LittleRedRidingHood {
                     break;
             }
         }
-    }
+    };
+
+    collidesWith(element) {
+        const colX =
+          element.x + element.w > this.x &&
+          element.x < this.x  + this.w;
+    
+        const colY =
+          element.y + element.h > this.y &&
+          element.y < this.y + this.h;
+    
+        return colX && colY;
+      }
+
 }

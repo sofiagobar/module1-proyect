@@ -8,7 +8,7 @@ class RottenApple extends Apple {
         this.w = 20
         this.h = 20
     
-        this.vx = 10
+        this.vx = -10
         this.vy = 0
 
         this.img = new Image()
