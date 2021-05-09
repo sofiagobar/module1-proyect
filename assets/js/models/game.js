@@ -17,6 +17,7 @@ class Game {
 
         this.points = 0
         this.randomTickMax =100
+        this.randomTickMax2 =200
 
         this.wolfAudio = new Audio('./assets/sound/wolfHowling.mp3')
         //this.audio = new Audio('./assets/sound/80s-synth-music.mp3')
@@ -32,12 +33,13 @@ class Game {
             this.score()
             
             if (this.tick++ > this.randomTickMax) {
-                this.randomTickMax = (Math.random() * 100) + 40
+                this.randomTickMax = (Math.random() * 100) + 70
                 this.tick = 0;
                 this.addWolf()
             }
 
-            if (this.tick === 50) {
+            if (this.tick++ > this.randomTickMax) {
+                this.randomTickMax = (Math.random() * 100) + 150
                 this.addShooterWolf()
             }
         }, 1000 / 60)
@@ -72,8 +74,7 @@ class Game {
         this.wolves.push(newWolf)
     };
 
-    addShooterWolf () {
-        console.log('entro')
+    addShooterWolf() {
         const newShooterWolf = new Shooterwolf(this.ctx)
         this.shooterWolves.push(newShooterWolf)
     };
@@ -121,20 +122,7 @@ class Game {
         if (collisionWithShooterWolf) {
             this.gameOver()
         }
-        /*
-        for (let i = 0; i < this.shooterWolves.length; i++) {
-            const wolf = this.shooterWolves[i];
-            for (let j = 0; j < this.littleRedRidingHood.apples.length; j++) {
-                const apple = this.littleRedRidingHood.apples[j]
-                if (shooterWolf.collidesWith(apple)) {
-                    this.points++
-                    this.shooterWolf.splice(i, 1)
-                    this.littleRedRidingHood.apples.splice(j, 1)
-                    break;
-                }
-            }
-        }
-*/
+  
         const allWolfApples = []
 
         for (let i = 0; i < this.shooterWolves.length; i++){
@@ -146,9 +134,6 @@ class Game {
         if (hitPlayer){
             this.gameOver()
         }
-        // iterate over wolves and add their apples to the array
-        // iterate over allWolfApples and check collision with caperucita
-      
     };
 
     score() {
@@ -159,7 +144,6 @@ class Game {
             50, 
             50
         )
-
     }
 
     gameOver() {

@@ -18,8 +18,6 @@ class Wolf {
     this.img.frames = 4;
     this.img.frameIndex = 0;
     this.img.src = "./assets/img/wolf2.png";
-
-    
   }
 
   draw() {
@@ -32,7 +30,6 @@ class Wolf {
       !this.isJumping()
     }
 
-    // ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     this.ctx.drawImage(
       this.img,
       0,

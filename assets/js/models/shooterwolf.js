@@ -1,11 +1,11 @@
 class Shooterwolf extends Wolf {
     constructor(ctx){
         super(ctx)
+
+        this.img.src = "./assets/img/shooterwolf.png";
+
         this.rottenApples = []
         
-        
-        //console.log(this)
-
         this.firetick = 0
     }
 
@@ -17,7 +17,7 @@ class Shooterwolf extends Wolf {
     move(){
         super.move()
         this.firetick++
-        if (this.firetick > 100) {
+        if (this.firetick > 45) {
             this.firetick = 0
             this.fire()
         }
@@ -31,8 +31,6 @@ class Shooterwolf extends Wolf {
             this.y + this.h / 2
             )
         this.rottenApples.push(rottenApple)
-
-        console.log('dispara')
     }
 
     clearRottenApples() {
