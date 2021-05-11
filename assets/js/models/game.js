@@ -144,7 +144,7 @@ class Game {
             50, 
             50
         )
-    }
+    };
 
     gameOver() {
         clearInterval(this.intervalId)
@@ -158,7 +158,19 @@ class Game {
             this.ctx.canvas.height / 2
         );
         this.wolfAudio.play()
-    }
+    };
 
+    win() {
+        clearInterval(this.intervalId)
+        
+        this.ctx.font = "40px Serif";
+        this.ctx.fillStyle = 'white';
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(
+            "YOU WIN!!",
+            this.ctx.canvas.width / 2,
+            this.ctx.canvas.height / 2
+        )
+    };
     
 }

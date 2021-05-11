@@ -22,7 +22,7 @@ class LittleRedRidingHood {
         this.img.frameIndex = 12
         this.img.src = './assets/img/red-hood8.png'
 
-        this.audio = new Audio('./assets/sound/throwapple')
+        //this.audio = new Audio('./assets/sound/throwapple')
 
         this.apples = []
     }
@@ -95,7 +95,7 @@ class LittleRedRidingHood {
             this.y + this.h / 2
             )
         this.apples.push(apple)
-        this.audio.play()
+        //this.audio.play()
     };
 
     clearApples() {
@@ -119,7 +119,6 @@ class LittleRedRidingHood {
                     break;
                 case KEY_FIRE:
                     this.fire()
-                    
                     break;
             }
         } else {

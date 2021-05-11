@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-
-   <div class="game-intro">
-       <!--<img src="./assets/img/startgame.jpg" alt="Little Red Start Game">
-        <button id ="start-button">Start</button>
-        <button id ="score-button">Score</button>--> 
-        <canvas id="game-canvas"></canvas>
-    </div>
     
+
+    <canvas id="game-canvas" class="invisible"></canvas>
+    
+    <div id="game-intro" class="invisible">
+        <img src="./assets/img/startgame.jpg">
+        <button id ="start-button">Start</button>
+        <button id ="score-button">Score</button>
+    </div> 
+
+    <div id="game-restart" class="invisible">
+        <button id="try-again-button">Try Again?</button>
+    </div>
+   
 
     <script src="assets/js/constants.js"></script>
     <script src="assets/js/models/wolf.js"></script>
