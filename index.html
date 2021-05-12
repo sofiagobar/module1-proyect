@@ -9,18 +9,22 @@
 </head>
 <body>
     
+<div id="container">
     <div id="game-intro" class="invisible">
         <img src="./assets/img/start-game1.png">
         <button id ="start-button">Start</button>
         <button id ="score-button">Score</button>
     </div> 
 
+    <div id="max-score" class="invisible"></div>
+
     <canvas id="game-canvas" class="invisible"></canvas>
     
-    <div id="game-restart" class="invisible">
+    <div id="game-restart" class="invisible" >
         <button id="try-again-button">Try Again?</button>
     </div>
    
+</div>
 
     <script src="assets/js/constants.js"></script>
     <script src="assets/js/models/wolf.js"></script>

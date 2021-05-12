@@ -7,11 +7,11 @@ html, body {
   
 body * {
   box-sizing: border-box;
+  font-family: Serif;
 }
 
 canvas {
   overflow: hidden;
-  border: 1px dotted;
   position: absolute;
 }
 
@@ -39,7 +39,7 @@ canvas {
 
 #try-again-button {
   font-size: 30px;
-  background-color:#f30914f6;
+  background-color:#cc0913f6;
   color: #fff;
   padding: 10px 30px;
   border: 0;
@@ -47,6 +47,18 @@ canvas {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
+#max-score{
+  font-size: 30px;
+  background-color: #cc0913f6;
+  color: #fff;
+  padding: 10px 30px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
 
 .invisible {
   display: none;

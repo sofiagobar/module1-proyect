@@ -165,6 +165,9 @@ class Game {
             this.onGameOver();
         }, 2500)
         
+        if (this.points > Number(localStorage.maxScore)) {
+            Number(localStorage.maxScore) = this.points
+        }
     };
     
 }
