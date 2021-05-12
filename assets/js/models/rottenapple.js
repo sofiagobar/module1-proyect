@@ -16,7 +16,6 @@ class RottenApple extends Apple {
     }
 
     move() {
-        //this.vy += this.g
         this.x += this.vx
         this.y += this.vy
     }

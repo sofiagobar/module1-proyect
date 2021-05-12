@@ -1,8 +1,8 @@
 class Game {
-    constructor(canvasId) {
+    constructor(canvasId, onGameOver) {
         
-        const canvas = document.getElementById(canvasId)
-        this.ctx = canvas.getContext("2d")
+        const canvas = document.getElementById(canvasId);
+        this.ctx = canvas.getContext("2d");
         canvas.width = 800
         canvas.height = 600
 
@@ -20,11 +20,13 @@ class Game {
         this.randomTickMax2 =200
 
         this.wolfAudio = new Audio('./assets/sound/wolfHowling.mp3')
-        //this.audio = new Audio('./assets/sound/80s-synth-music.mp3')
+        //this.bgaudio = new Audio('./assets/sound/80s-synth-music.mp3')
+
+        this.onGameOver = onGameOver
     };
 
     start() {
-        //this.audio.play()
+        //this.bgaudio.play()
         this.intervalId = setInterval(() => {
             this.clear()
             this.move()
@@ -129,7 +131,7 @@ class Game {
             const shooterWolf = this.shooterWolves[i]
             allWolfApples.push(...shooterWolf.rottenApples)
         } 
-            console.log(allWolfApples)
+
         const hitPlayer = allWolfApples.some(apple => this.littleRedRidingHood.collidesWith(apple))
         if (hitPlayer){
             this.gameOver()
@@ -157,20 +159,12 @@ class Game {
             this.ctx.canvas.width / 2,
             this.ctx.canvas.height / 2
         );
-        this.wolfAudio.play()
-    };
 
-    win() {
-        clearInterval(this.intervalId)
+        this.wolfAudio.play();
+        setTimeout(() =>{
+            this.onGameOver();
+        }, 2500)
         
-        this.ctx.font = "40px Serif";
-        this.ctx.fillStyle = 'white';
-        this.ctx.textAlign = "center";
-        this.ctx.fillText(
-            "YOU WIN!!",
-            this.ctx.canvas.width / 2,
-            this.ctx.canvas.height / 2
-        )
     };
     
 }

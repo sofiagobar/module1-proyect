@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const game = new Game('game-canvas')
+  let game = new Game('game-canvas', onGameOver)
 
   document.addEventListener('keydown', (event) => {
     game.onKeyEvent(event)
@@ -10,34 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
     game.onKeyEvent(event)
   })
 
-  document.getElementById('start-button').onclick = () => {
-    if (!game.intervalId) {
-      game.start();
-      displayGame();
-    }
-  }
+  document.getElementById('game-intro').style.display = 'block';
+  const startButton = document.getElementById('start-button')
+  const tryAgainButton = document.getElementById('try-again-button')
 
-  function displayGame(){
-    document.getElementById('game-intro').style.display = 'none';
-    document.getElementById('game-canvas').classList.remove('invisible')
+  startButton.addEventListener('click', () => {
+    document.querySelectorAll('.invisible').forEach(panel => panel.style.display = 'none');
+    document.getElementById('game-canvas').style.display = 'block';
+    game.start();
+    
+  })
+  
+  tryAgainButton.addEventListener('click', () => {
+    document.querySelectorAll('.invisible').forEach(panel => panel.style.display = 'none');
+    document.getElementById('game-canvas').style.display = 'block';
+    game = new Game ('game-canvas', onGameOver)
+    game.start();
+  })
+
+  function onGameOver(){
+    document.querySelectorAll('.invisible').forEach(panel => panel.style.display = 'none');
+    document.getElementById('game-restart').style.display = 'block';
   }
 
 })
 
-  //displayGame()
- /*function displayGame(){
-  document.getElementById('game-intro').style.display = 'none';
-  document.getElementById('game-canvas').classList.remove('invisible')} 
-  
-  
 
-  const ctx = document.getElementById('game-canvas').getContext('2d')
 
-  document.getElementById('start-button').onclick = () => {
-  if (!game.intervalId) {
-    game.start();
-    displayGame()
-    }
-  }
-  
-  */
+
+ 
