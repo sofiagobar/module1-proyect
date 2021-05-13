@@ -57,7 +57,6 @@ class Game {
         this.littleRedRidingHood.draw()
         this.wolves.forEach(wolf => wolf.draw())
         this.shooterWolves.forEach(shooterWolf => shooterWolf.draw())
-        
     };
     
     onKeyEvent() {
@@ -163,7 +162,7 @@ class Game {
         this.wolfAudio.play();
         setTimeout(() =>{
             this.onGameOver();
-        }, 2500)
+        }, 2000)
         
         if (this.points > Number(localStorage.maxScore)) {
             Number(localStorage.maxScore) = this.points

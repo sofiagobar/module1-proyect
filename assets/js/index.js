@@ -42,12 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('game-intro').style.display = 'block';
   })
 
-
   function onGameOver(){
     document.querySelectorAll('.invisible').forEach(panel => panel.style.display = 'none');
     document.getElementById('game-restart').style.display = 'block';
   }
-
 })
 
 
